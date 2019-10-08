@@ -1,28 +1,50 @@
 /**
- * http
+ * http://blog.csdn.net/sunxianghuuang/article/details/5221913
  */
 package wsz.c_025;
 
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.Random;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.CountDownLatch;
 
 public class T01_ConcurrentMap {
-    //Map<String, String> map = new ConcurrentHashMap<>();
-    //Map<String, String> map = new ConcurrentSkipListMap<>();
+    public static void main(String[] args) {
+        //Map<String, String> map = new ConcurrentHashMap<>();
+        //Map<String, String> map = new ConcurrentSkipListMap<>();
 
-    Map<String, String> map = new Hashtable<>();
-    //Map<String, String> map = new HashMap<>();
-    //TreeMap
-    Random r = new Random();
-    Thread[] ths = new Thread[100];
-    CountDownLatch latch = new CountDownLatch(ths.length);
+        Map<String, String> map = new Hashtable<>();
+        //Map<String, String> map = new HashMap<>();
+        //TreeMap
+        Random r = new Random();
+        Thread[] ths = new Thread[100];
+        CountDownLatch latch = new CountDownLatch(ths.length);
+
+        long start = System.currentTimeMillis();
+
+        for(int i = 0; i < ths.length; i++) {
+            ths[i] = new Thread(()->{
+                for (int j = 0; j < 10000; j++) {
+                    map.put("a" + r.nextInt(100000), "a" + r.nextInt(100000));
+                    latch.countDown();
+                }
+            });
+        }
 
 
+        Arrays.asList(ths).forEach(t->t.start());
+
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        long end = System.currentTimeMillis();
+
+        System.out.println(end - start);
+    }
 
 
 }
