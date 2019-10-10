@@ -23,7 +23,7 @@ Collections.synchronizedXXX
 Vector
 CopyOnWriteList
 Queue
-    ConcurrentLinkedQueue
+    ConcurrentLinkedQueue //ConcurrentArrayQueue
     BlockingQueue
         LinkedBlockingQueue
         ArrayBlockingQueue
