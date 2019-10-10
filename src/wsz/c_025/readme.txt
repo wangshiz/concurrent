@@ -1,17 +1,32 @@
 总结
 1.对于map/set的选择使用
 不加锁
-hashmap
-treemap
-linkedhashmap
+Hashmap
+Treemap
+Linkedhashmap
 
 
 想加锁
-hashtable
+Hashtable
 Connections.synchronizedxxx
 
 
 并发性较高
-concurrenthashmap
-concurrentskiplistmap
+Concurrenthashmap
+Concurrentskiplistmap 可排序
 
+
+2.队列
+ArrayList
+LinkedList
+Collections.synchronizedXXX
+Vector
+CopyOnWriteList
+Queue
+    ConcurrentLinkedQueue
+    BlockingQueue
+        LinkedBlockingQueue
+        ArrayBlockingQueue
+        TransferQueue
+        SynchronusQueue
+    DelayQueue执行定时任务
