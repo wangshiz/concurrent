@@ -13,7 +13,7 @@ public class T implements Runnable {
     public static void main(String[] args) {
         T t = new T();
         for (int i = 0; i < 5; i++) {
-            new Thread(t, "THREAD" + i).start();;
+            new Thread(t, "THREAD" + i).start();
         }
     }
 }
